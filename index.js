@@ -1,11 +1,16 @@
 const puppeteer = require('puppeteer');
-
+const fs = require("fs");
 (async () => {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
-  for (let index = 0; index < 50; index++) {
-    await page.goto(`https://chouseisan.com/assets/img/list/parson${index}.png`);
-    await page.screenshot({path: `./img/character_${index}.png`});
-  }
+  await page.goto(`https://www.amazon.co.jp/s?rh=n%3A4217521051&brr=1`);
+  // let html = await page.$eval('.s-result-item ', item => {
+  //   const list = Array.from(document.querySelectorAll(selector));
+  //   return item.innerHTML;
+  // });
+  // fs.writeFile('out.txt', html, (err, data) => {
+  //   if(err) console.log(err);
+  //   else console.log('write end');
+  // });
   await browser.close();
 })();
